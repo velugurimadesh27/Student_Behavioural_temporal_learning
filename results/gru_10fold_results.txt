@@ -1,0 +1,42 @@
+GRU 10-Fold Leave-One-Video-Out Results
+=========================================
+
+Sequence length: 10
+Input feature size: 512
+Hidden size: 128
+Epochs: 20
+
+Fold 1: VID20260921190749 -> 100.00%
+Fold 2: VID20260921190908 -> 100.00%
+Fold 3: VID20260921191000 -> 0.00%
+Fold 4: VID20260921191745 -> 89.22%
+Fold 5: VID20260921191812 -> 100.00%
+Fold 6: VID20260921192014 -> 0.00%
+Fold 7: VID20260921192205 -> 0.00%
+Fold 8: VID20260921192308 -> 0.00%
+Fold 9: VID20260921192424 -> 0.00%
+Fold 10: VID20260921192532 -> 0.97%
+
+Mean Accuracy: 39.02%
+Standard Deviation: 47.68%
+
+Classification Report
+---------------------
+                precision    recall  f1-score   support
+
+     Head_Down       0.03      0.01      0.01       200
+  Looking_Away       0.00      0.00      0.00       215
+Looking_Toward       0.90      0.68      0.77       306
+       Writing       0.36      0.57      0.44       354
+
+      accuracy                           0.38      1075
+     macro avg       0.32      0.31      0.31      1075
+  weighted avg       0.38      0.38      0.37      1075
+
+
+Confusion Matrix
+----------------
+[[  1  99  21  79]
+ [ 26   0   3 186]
+ [  0   8 208  90]
+ [  8 145   0 201]]
