@@ -166,6 +166,13 @@ Run all pipeline stages directly from the virtual environment:
 # 8. Generate comparative performance and dataset distribution charts
 & .\.venv\Scripts\python.exe src/plot_comparison.py
 
-# 9. (Live Demo) Run real-time webcam behavior profiling (Starts in Fullscreen, press 'f' to toggle)
+# 9. (Live Demo) Run single-student webcam profiling (Starts in Fullscreen, press 'f' to toggle)
 & .\.venv\Scripts\python.exe src/live_webcam_demo.py
+
+# 10. (Multi-Person Profiler) Run simultaneous multi-student profiling (Person A, Person B...)
+# On live webcam:
+& .\.venv\Scripts\python.exe src/multi_person_profiler.py
+
+# On recorded classroom video:
+& .\.venv\Scripts\python.exe src/multi_person_profiler.py --source dataset/raw_videos/Writing/VID20260921191745.mp4
 ```
