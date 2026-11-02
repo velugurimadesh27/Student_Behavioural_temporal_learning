@@ -7,12 +7,15 @@ try:
 except ModuleNotFoundError:
     from multi_person_profiler import run_multi_person_profiler
 
-def run_live_webcam(camera_index=0, max_persons=1, sequence_length=10, sample_fps=5,
-                    motion_threshold=0.80, start_fullscreen=True):
+def run_live_webcam(camera_index=0, max_persons=10, sequence_length=10, sample_fps=5,
+                    motion_threshold=1.50, start_fullscreen=True):
     """
     Precision Live Classroom Behavior Profiler.
-    Uses robust face/gaze detection and localized desk/hand motion
-    to accurately profile Head_Down, Writing, Looking_Toward, and Looking_Away.
+    Dynamically detects and tracks however many students appear in front of the camera
+    (Person A, Person B, Person C, Person D...), profiling Head_Down, Writing,
+    Looking_Toward, and Looking_Away for each person independently.
+    Detects when a person leaves the camera view, removing them within ~1 second.
+    Filters slight hand shaking in Head_Down from being misclassified as Writing.
     """
     run_multi_person_profiler(
         source=camera_index,
@@ -24,10 +27,10 @@ def run_live_webcam(camera_index=0, max_persons=1, sequence_length=10, sample_fp
     )
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Precision Live Classroom Behavior Profiler.")
+    parser = argparse.ArgumentParser(description="Precision Dynamic Multi-Person Classroom Behavior Profiler.")
     parser.add_argument("--camera", type=int, default=0, help="Camera index (default: 0)")
-    parser.add_argument("--max-persons", type=int, default=1, help="Max students to profile (default: 1, use 2 for multi-person)")
-    parser.add_argument("--threshold", type=float, default=0.80, help="Motion threshold percent for writing (default: 0.80)")
+    parser.add_argument("--max-persons", type=int, default=10, help="Max students to profile dynamically (default: 10)")
+    parser.add_argument("--threshold", type=float, default=1.50, help="Motion threshold percent for writing (default: 1.50)")
     parser.add_argument("--seq-len", type=int, default=10, help="Sequence length (default: 10)")
     parser.add_argument("--fps", type=int, default=5, help="Sampling FPS (default: 5)")
     parser.add_argument("--windowed", action="store_true", help="Start in windowed mode instead of fullscreen")
